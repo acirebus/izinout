@@ -2,20 +2,6 @@
 
 Aplikasi IzinOut adalah sistem digital untuk pengajuan, verifikasi, dan dokumentasi izin keluar siswa di lingkungan sekolah. Dibangun menggunakan Laravel, aplikasi ini memudahkan proses perizinan, meningkatkan transparansi, dan mengurangi risiko kehilangan dokumen fisik.
 
-
-### Masalah yang Diselesaikan
-- Surat izin kertas mudah hilang dan sulit ditelusuri.
-- Proses manual memakan waktu (datang ke guru BK/wali kelas, tanda tangan).
-- Validasi izin kurang ketat, rawan pemalsuan.
-- Sekolah kesulitan memantau izin secara real-time dan historis.
-
-### Tujuan
-- Membuat sistem izin digital yang transparan, cepat, dan aman.
-- Memudahkan siswa mengajukan izin online.
-- Memudahkan guru/admin memverifikasi izin.
-- Penjaga sekolah dapat memvalidasi izin dengan QR Code.
-- Data izin terdokumentasi untuk evaluasi sekolah.
-
 ## Fitur Utama
 
 - **Registrasi & Login**: Siswa, Guru BK/Admin, dan Guru Mapel dapat login dengan akun masing-masing.
@@ -49,7 +35,7 @@ Aplikasi IzinOut adalah sistem digital untuk pengajuan, verifikasi, dan dokument
 	# atau untuk development
 	npm run dev
 	```
-5. Edit file `.env` sesuai konfigurasi database.
+5. Edit file `.env` sesuai konfigurasi das,.tabase.
 6. Generate key aplikasi:
 	```powershell
 	php artisan key:generate
