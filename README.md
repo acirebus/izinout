@@ -55,7 +55,6 @@ Aplikasi IzinOut adalah sistem digital untuk pengajuan, verifikasi, dan dokument
     ```powershell
 	php artisan storage:link
 	```
-    
 8. Jalankan server lokal:
 	```powershell
 	php artisan serve
