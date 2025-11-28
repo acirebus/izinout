@@ -36,29 +36,36 @@ Aplikasi IzinOut adalah sistem digital untuk pengajuan, verifikasi, dan dokument
 
 ## Cara Instalasi & Menjalankan (Lokal)
 
-1. Aktifkan Apache dan MySQL (Laragon).
-2. Import database `izin` dan jalankan semua query.
+1. Aktifkan Apache dan MySQL (Laragon/XAMPP).
+2. Import database `izin.sql`dalam project ini dan jalankan semua query.
 3. Buka folder project, install dependency Laravel:
 	```powershell
 	composer install
 	```
-4. Edit file `.env` sesuai konfigurasi database.
-5. Generate key aplikasi:
+4. Install dependency frontend (npm):
+	```powershell
+	npm install
+	npm run build
+	# atau untuk development
+	npm run dev
+	```
+5. Edit file `.env` sesuai konfigurasi database.
+6. Generate key aplikasi:
 	```powershell
 	php artisan key:generate
 	```
-6. Migrasi dan seeding database (Opsional jika sudah mengimpor database izin.sql di dalam project dengan struktur dan datanya):
+7. Migrasi database:
 	```powershell
-	php artisan migrate --seed
-	```
-7. Buat symlink storage agar file evidence bisa diakses publik
-    ```powershell
-	php artisan storage:link
+	php artisan migrate
 	```
 8. Jalankan server lokal:
 	```powershell
 	php artisan serve
 	```
+9. Buat symlink storage agar file evidence bisa diakses publik
+    ```powershell
+    php artisan storage:link
+    ```
 9. Akses aplikasi di browser, contoh: `http://localhost:8000`
 
 ## Contoh Konfigurasi .env
