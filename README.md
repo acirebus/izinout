@@ -47,15 +47,20 @@ Aplikasi IzinOut adalah sistem digital untuk pengajuan, verifikasi, dan dokument
 	```powershell
 	php artisan key:generate
 	```
-6. Migrasi dan seeding database:
+6. Migrasi dan seeding database (Opsional jika sudah mengimpor database izin.sql di dalam project dengan struktur dan datanya):
 	```powershell
 	php artisan migrate --seed
 	```
-7. Jalankan server lokal:
+7. Buat symlink storage agar file evidence bisa diakses publik
+    ```powershell
+	php artisan storage:link
+	```
+    
+8. Jalankan server lokal:
 	```powershell
 	php artisan serve
 	```
-8. Akses aplikasi di browser, contoh: `http://localhost:8000`
+9. Akses aplikasi di browser, contoh: `http://localhost:8000`
 
 ## Contoh Konfigurasi .env
 

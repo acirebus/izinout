@@ -48,26 +48,68 @@ class DatabaseSeeder extends Seeder
             'status' => 'active',
         ]);
 
-        $studentUser = User::create([
-            'email' => 'ahmad@smkn13bdg',
-            'password_hash' => Hash::make('password'),
-            'name' => 'Ahmad Siswa',
-            'phone' => '081234567891',
-            'role' => 'student',
-            'school_id' => $school->school_id,
-            'status' => 'active',
-        ]);
+        $studentUsers = [
+            [
+                'email' => 'ahmad@smkn13bdg',
+                'name' => 'Ahmad Siswa',
+                'phone' => '081234567891',
+                'student_number' => '1001',
+                'class_name' => 'XII-RPL2',
+            ],
+            [
+                'email' => 'udin@smkn13bdg',
+                'name' => 'Udin Siswa',
+                'phone' => '081234567892',
+                'student_number' => '1002',
+                'class_name' => 'XII-RPL2',
+            ],
+            [
+                'email' => 'asep@smkn13bdg',
+                'name' => 'Asep Siswa',
+                'phone' => '081234567893',
+                'student_number' => '1003',
+                'class_name' => 'XII-RPL2',
+            ],
+            [
+                'email' => 'agus@smkn13bdg',
+                'name' => 'Agus Siswa',
+                'phone' => '081234567894',
+                'student_number' => '1004',
+                'class_name' => 'XII-RPL2',
+            ],
+            [
+                'email' => 'tessiswa@smkn13bdg',
+                'name' => 'Tes Siswa',
+                'phone' => '081234567895',
+                'student_number' => '1005',
+                'class_name' => 'XII-RPL2',
+            ],
+        ];
 
-        // === Siswa ===
-        $student = Student::create([
-            'user_id' => $studentUser->user_id,
-            'student_number' => '01',
-            'class_name' => 'XII-RPL2',
-        ]);
+        $students = [];
+        foreach ($studentUsers as $s) {
+            $user = User::create([
+                'email' => $s['email'],
+                'password_hash' => Hash::make('password'),
+                'name' => $s['name'],
+                'phone' => $s['phone'],
+                'role' => 'student',
+                'school_id' => $school->school_id,
+                'status' => 'active',
+            ]);
+            $student = Student::create([
+                'user_id' => $user->user_id,
+                'student_number' => $s['student_number'],
+                'class_name' => $s['class_name'],
+            ]);
+            $students[] = $student;
+        }
 
-        // === Izin sampel/contoh ===
+        // === Izin sampel/contoh untuk siswa pertama ===
+        $sampleStudent = $students[0];
+        $sampleUserId = $sampleStudent->user_id;
         $permission = Permission::create([
-            'student_id' => $student->student_id,
+            'student_id' => $sampleStudent->student_id,
             'school_id' => $school->school_id,
             'reason' => 'Izin Demo',
             'time_start' => now()->addHour()->format('Y-m-d H:i:s'),
@@ -80,7 +122,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // === log ===
-        PermissionLog::createLog($permission->permission_id, $studentUser->user_id, 'submitted', 'Perizinan diajukan siswa');
+        PermissionLog::createLog($permission->permission_id, $sampleUserId, 'submitted', 'Perizinan diajukan siswa');
 
         // === ntf ===
         Notification::create([
@@ -103,7 +145,7 @@ class DatabaseSeeder extends Seeder
             PermissionLog::createLog($permission->permission_id, $admin->user_id, 'approved', 'Perizinan disetujui oleh admin');
             PermissionLog::createLog($permission->permission_id, $admin->user_id, 'qr_generated', 'QR Code berhasil dibuat');
             Notification::createPermissionNotification(
-                $studentUser->user_id,
+                $sampleUserId,
                 $permission->status,
                 $permission->permission_id
             );
