@@ -1,61 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# nugas 5 : IzinOut
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi IzinOut adalah sistem digital untuk pengajuan, verifikasi, dan dokumentasi izin keluar siswa di lingkungan sekolah. Dibangun menggunakan Laravel, aplikasi ini memudahkan proses perizinan, meningkatkan transparansi, dan mengurangi risiko kehilangan dokumen fisik.
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Masalah yang Diselesaikan
+- Surat izin kertas mudah hilang dan sulit ditelusuri.
+- Proses manual memakan waktu (datang ke guru BK/wali kelas, tanda tangan).
+- Validasi izin kurang ketat, rawan pemalsuan.
+- Sekolah kesulitan memantau izin secara real-time dan historis.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Tujuan
+- Membuat sistem izin digital yang transparan, cepat, dan aman.
+- Memudahkan siswa mengajukan izin online.
+- Memudahkan guru/admin memverifikasi izin.
+- Penjaga sekolah dapat memvalidasi izin dengan QR Code.
+- Data izin terdokumentasi untuk evaluasi sekolah.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Fitur Utama
 
-## Learning Laravel
+- **Registrasi & Login**: Siswa, Guru BK/Admin, dan Guru Mapel dapat login dengan akun masing-masing.
+- **Pengajuan Izin Siswa**: Siswa mengisi alasan, waktu mulai/akhir, dan mengunggah bukti pendukung.
+- **Verifikasi Izin**: Guru BK/Admin dan Guru Mapel meninjau, menyetujui, atau menolak permohonan izin.
+- **QR Code Otomatis**: Izin yang disetujui menghasilkan QR Code unik sesuai durasi izin.
+- **Validasi QR oleh Penjaga**: Penjaga sekolah memindai QR untuk cek validitas izin secara real-time.
+- **Notifikasi Real-time**: Siswa dan guru menerima notifikasi status izin.
+- **Riwayat Izin**: Semua pengguna dapat melihat riwayat izin secara lengkap.
+- **Statistik & Laporan**: Admin dapat melihat statistik izin dan melakukan ekspor data.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Cara Kerja Singkat
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. Siswa login dan mengajukan izin melalui form digital.
+2. Guru/Admin menerima notifikasi dan memverifikasi permohonan.
+3. Jika disetujui, QR Code dibuat dan dapat dipindai oleh penjaga.
+4. Semua proses tercatat dan dapat diakses pada riwayat masing-masing pengguna.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Cara Instalasi & Menjalankan (Lokal)
 
-## Laravel Sponsors
+1. Aktifkan Apache dan MySQL (Laragon).
+2. Import database `izin` dan jalankan semua query.
+3. Buka folder project, install dependency Laravel:
+	```powershell
+	composer install
+	```
+4. Edit file `.env` sesuai konfigurasi database.
+5. Generate key aplikasi:
+	```powershell
+	php artisan key:generate
+	```
+6. Migrasi dan seeding database:
+	```powershell
+	php artisan migrate --seed
+	```
+7. Jalankan server lokal:
+	```powershell
+	php artisan serve
+	```
+8. Akses aplikasi di browser, contoh: `http://localhost:8000`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Contoh Konfigurasi .env
 
-### Premium Partners
+```
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY= // App key otomatis //
+APP_DEBUG=true
+APP_URL=http://localhost
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=izin
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## Contributing
+## Akun Demo
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Login dengan email berikut (password: `password`):
+- admin@smkn13 (admin)
+- guru@smkn13 (guru)
+- udin@smkn13 (siswa)
+- asep@smkn13 (siswa)
+- agus@smkn13 (siswa)
+- tessiswa@smkn13 (siswa)
 
-## Code of Conduct
+## Struktur Utama
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- `app/Http/Controllers/` : Logika backend (pengajuan, verifikasi, notifikasi, QR, dsb)
+- `resources/views/` : Tampilan frontend (form, dashboard, riwayat, dll)
+- `routes/web.php` : Rute aplikasi
+- `app/Models/` : Model data (Siswa, Izin, QR, Notifikasi, dsb)
+- `database/migrations/` : Struktur tabel database
