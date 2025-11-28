@@ -1,4 +1,4 @@
-# nugas 5 : IzinOut
+# Nugas 5 : IzinOut
 
 Aplikasi IzinOut adalah sistem digital untuk pengajuan, verifikasi, dan dokumentasi izin keluar siswa di lingkungan sekolah. Dibangun menggunakan Laravel, aplikasi ini memudahkan proses perizinan, meningkatkan transparansi, dan mengurangi risiko kehilangan dokumen fisik.
 
